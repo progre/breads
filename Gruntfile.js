@@ -17,27 +17,7 @@ module.exports = function(grunt) {
     exec: {
       tsd: {
         cmd: function() {
-          return 'tsd install ' + tsdDependencies.join(' ');
-        }
-      }
-    },
-    watch: {
-      jade: {
-        files: ['src/public/**/*.jade'],
-        tasks: ['jade:debug']
-      },
-      stylus: {
-        files: ['src/public/**/*.styl'],
-        tasks: ['stylus'],
-      },
-      typescript: {
-        files: ['src/public/**/*.ts'],
-        tasks: ['typescript']
-      },
-      public: {
-        files: ['public/**/*.*'],
-        options: {
-          livereload: true
+          return 'tsd install ' + projectConfig.tsdDependencies.join(' ');
         }
       }
     },
@@ -71,8 +51,7 @@ module.exports = function(grunt) {
         options: {
           module: 'amd',
           base_path: 'src',
-          sourcemap: true,
-          fullSourceMapPath: true
+          sourcemap: true
         }
       }
     },
@@ -99,6 +78,26 @@ module.exports = function(grunt) {
         }
       }
     },
+    watch: {
+      jade: {
+        files: ['src/public/**/*.jade'],
+        tasks: ['jade:debug']
+      },
+      stylus: {
+        files: ['src/public/**/*.styl'],
+        tasks: ['stylus'],
+      },
+      typescript: {
+        files: ['src/public/**/*.ts'],
+        tasks: ['typescript']
+      },
+      public: {
+        files: ['public/**/*.*'],
+        options: {
+          livereload: true
+        }
+      }
+    },
     copy: {
       deploy: {
         files: [{
@@ -106,7 +105,7 @@ module.exports = function(grunt) {
           cwd: 'public/',
           src: [
             '**',
-            '!**/*.map', '!javascript/**/*.js'
+            '!**/*.map', '!javascript/**'
           ],
           dest: 'dist/',
           filter: 'isFile'
@@ -117,10 +116,13 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
   grunt.registerTask('default', [
     'debug-build',
+    'serve'
+  ]);
+  grunt.registerTask('serve', [
     'connect:server',
     'watch'
   ]);
-  grunt.registerTask('release-server', [
+  grunt.registerTask('release-serve', [
     'release-build',
     'connect:keepalive',
   ]);
