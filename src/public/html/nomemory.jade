@@ -1,0 +1,22 @@
+.container
+  form.form-horizontal.row
+    .form-group
+      label.col-sm-2.control-label 今日まで
+      .col-sm-2
+        input.form-control(type='number', placeholder='年齢', max='200', ng-model='age')
+      label.col-sm-2.control-label(style='text-align: left;') 年生きた
+    .form-group
+      label.col-sm-2.control-label 今日は
+      .col-sm-2
+        input.form-control(type='number', placeholder='枚数', max='99', ng-model='breadsPerDay')
+      label.col-sm-3.control-label(style='text-align: left;') 枚のパンを食べた
+  p.row.animate(ng-show='breadsPerLife != null')
+    b(ng-show='breadsPerLife > 0')
+      | お前は今日までに{{breadsPerLife}}枚のパンを食べたということだッ…！
+      a.twitter-share-button(href='https://twitter.com/share', data-lang='ja', data-url='https://dl.dropboxusercontent.com/u/1358746/breads/.html#/', data-text='私は今日までに{{breadsPerLife}}枚のパンを食べました') ツイート
+    b(ng-show='breadsPerLife === 0')
+      | お前はパンを食わないのか…？
+  hr
+  p.row
+    a(href='#/')
+      button.btn.btn-default おぼえていないと言ったな。あれは嘘だ。

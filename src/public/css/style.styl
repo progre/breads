@@ -21,10 +21,19 @@ transform() {
 .animate {
   transition: 100ms linear all;
 }
+.animate.ng-leave {
+  transition: none;
+}
 .ng-hide-add, .ng-hide-remove {
   display: block!important;
 }
 .ng-hide {
   overflow: hidden;
   line-height: 0;
+}
+.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.ng-enter, .ng-leave.ng-leave-active {
+  opacity: 0;
 }

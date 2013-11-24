@@ -1,11 +1,15 @@
 doctype 5
 meta(charset='utf-8')
-title
+title おまえは今まで食ったパンの枚数をおぼえているのか?
 link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css')
 link(rel='stylesheet', href='css/style.css')
-div(ng-view)
-  div(style='text-align: center; margin: 40px auto; font-size: 24px')
-    | ⏳
+.container
+  h1 おまえは今まで食ったパンの枚数をおぼえているのか?
+  p created by <a href="https://twitter.com/progremaster">@progremaster</a>
+  a.twitter-share-button(href='https://twitter.com/share', data-lang='ja', data-url='https://dl.dropboxusercontent.com/u/1358746/breads/.html#/') ツイート
+  .animate(ng-view)
+    div(style='text-align: center; margin: 40px auto; font-size: 24px')
+      | ⏳
 script(src='//code.jquery.com/jquery-2.0.3.min.js')
 script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.js')
 if debug
@@ -21,3 +25,5 @@ if debug
   script(src='//localhost:35729/livereload.js')
 else
   script(src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js', data-main='js/main')
+script.
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');

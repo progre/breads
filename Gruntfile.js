@@ -109,6 +109,9 @@ module.exports = function(grunt) {
           ],
           dest: 'dist/',
           filter: 'isFile'
+        }, {
+          src: ['public/index.html'],
+          dest: 'dist/.html'
         }]
       }
     }
