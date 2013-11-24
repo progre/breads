@@ -1,0 +1,8 @@
+node_modules/
+*.js
+*.css
+*.html
+*.map
+
+!Gruntfile.js
+!public/javascript/config.js
