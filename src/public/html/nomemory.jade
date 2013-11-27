@@ -13,9 +13,9 @@
   p.row.animate(ng-show='breadsPerLife != null')
     b(ng-show='breadsPerLife > 0')
       | お前は今日までに{{breadsPerLife}}枚のパンを食べたということだッ…！
-      a.twitter-share-button(href='https://twitter.com/share', data-lang='ja', data-url='https://dl.dropboxusercontent.com/u/1358746/breads/.html#/', data-text='私は今日までに{{breadsPerLife}}枚のパンを食べました') ツイート
     b(ng-show='breadsPerLife === 0')
       | お前はパンを食わないのか…？
+    #twitter
   hr
   p.row
     a(href='#/')

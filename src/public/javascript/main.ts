@@ -31,18 +31,26 @@ app.controller('MemoryController',
             if (breadsPerDay >= 1) {
                 $scope.breadsPerDay = breadsPerDay | 0;
                 $scope.daysPerBread = null;
-                twttr.widgets.load();
+                angular.element('#twitter')
+                    .html(getTweetButton(
+                        '私は一日に' + $scope.breadsPerDay + '枚のパンを食べます'))
+                    .ready(() => twttr.widgets.load());
                 return;
             }
             if (breadsPerDay === 0.0) {
                 $scope.breadsPerDay = 0;
                 $scope.daysPerBread = null;
-                twttr.widgets.load();
+                angular.element('#twitter')
+                    .html(getTweetButton('私はパンを食べません'))
+                    .ready(() => twttr.widgets.load());
                 return;
             }
             $scope.breadsPerDay = null;
             $scope.daysPerBread = (1 / breadsPerDay) | 0;
-            twttr.widgets.load();
+            angular.element('#twitter')
+                .html(getTweetButton(
+                    '私は' + $scope.daysPerBread + '日に一枚パンを食べます'))
+                .ready(() => twttr.widgets.load());
         }
         $scope.$watch('age', () => onParameterChanged());
         $scope.$watch('breadsPerLife', () => onParameterChanged());
@@ -58,10 +66,23 @@ app.controller('NoMemoryController',
                 return;
             }
             $scope.breadsPerLife = ageNum * 365 * breadsPerDayNum;
-            twttr.widgets.load();
+            if ($scope.breadsPerLife === 0) {
+                angular.element('#twitter')
+                    .html(getTweetButton('私はパンを食べません'))
+                    .ready(() => twttr.widgets.load());
+                return;
+            }
+            angular.element('#twitter')
+                .html(getTweetButton(
+                    '私は今日までに' + $scope.breadsPerLife + '枚のパンを食べました'))
+                .ready(() => twttr.widgets.load());
         }
         $scope.$watch('age', () => onParameterChanged());
         $scope.$watch('breadsPerDay', () => onParameterChanged());
     }]);
+
+function getTweetButton(message: string) {
+    return '<a href="https://twitter.com/share" data-lang="ja" data-url="https://dl.dropboxusercontent.com/u/1358746/breads/.html#/" data-text="' + message + '" data-size="large" data-count="none" class="twitter-share-button">結果をツイート</a>';
+}
 
 angular.bootstrap(<any>document, ['app']);
