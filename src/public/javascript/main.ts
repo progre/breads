@@ -82,7 +82,7 @@ app.controller('NoMemoryController',
     }]);
 
 function getTweetButton(message: string) {
-    return '<a href="https://twitter.com/share" data-lang="ja" data-url="https://dl.dropboxusercontent.com/u/1358746/breads/.html#/" data-text="' + message + '" data-size="large" data-count="none" class="twitter-share-button">結果をツイート</a>';
+    return '<a href="https://twitter.com/share" data-lang="ja" data-url="http://www.prgrssv.net/izayoi/breads/" data-text="' + message + '" data-size="large" data-count="none" class="twitter-share-button">結果をツイート</a>';
 }
 
 angular.bootstrap(<any>document, ['app']);
