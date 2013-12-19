@@ -3,14 +3,17 @@
 declare var twttr: any;
 
 var app = angular.module('app', ['ngRoute', 'ngAnimate']);
-app.config(['$routeProvider',
-    ($routeProvider: ng.IRouteProvider) => {
+app.config(['$locationProvider', '$routeProvider',
+    ($locationProvider: ng.ILocationProvider, $routeProvider: ng.IRouteProvider) => {
+        var depth = 2;
+        var base = location.pathname.match('^((\/.+?){' + depth + '})\/')[1];
+        $locationProvider.html5Mode(true);
         $routeProvider
-            .when('/', {
+            .when(base + '/', {
                 templateUrl: 'html/index.html'
-            }).when('/memory.html', {
+            }).when(base + '/memory.html', {
                 templateUrl: 'html/memory.html', controller: 'MemoryController'
-            }).when('/nomemory.html', {
+            }).when(base + '/nomemory.html', {
                 templateUrl: 'html/nomemory.html', controller: 'NoMemoryController'
             }).otherwise({
                 templateUrl: 'html/404.html'
